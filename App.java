@@ -1,6 +1,7 @@
 package cartoon;
 
 import javafx.application.Application;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
@@ -17,6 +18,11 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) {
+        PaneOrganizer organizer = new PaneOrganizer();
+        Cartoon cartoon = new Cartoon();
+        stage.setScene(new Scene(organizer.getRoot(),500, 500));
+        stage.setTitle("Stage");
+        stage.show();
         // Create top-level object, set up the scene, and show the stage here.
     }
 
