@@ -15,10 +15,8 @@ public class PaneOrganizer {
     public PaneOrganizer() {
         _root = new BorderPane();
         _root.setStyle("-fx-background-color: #FFFFFF;");
-        Pane skyPane = new Pane();
-        skyPane.setPrefSize(500, 400);
-        skyPane.setStyle("-fx-background-color: #000000");
-        _root.setTop(skyPane);
+
+
         new Cartoon(_root);
         this.createPanes();
     }
