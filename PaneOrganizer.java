@@ -15,9 +15,8 @@ public class PaneOrganizer {
     public PaneOrganizer() {
         _root = new BorderPane();
         _root.setStyle("-fx-background-color: #FFFFFF;");
-
-
-        new Cartoon(_root);
+        Pane starPane = new Pane();
+        new Cartoon(_root, starPane);
         this.createPanes();
     }
 
@@ -30,6 +29,7 @@ public class PaneOrganizer {
         grassPane.setPrefSize(500, 100);
         grassPane.setStyle("-fx-background-color: #222b13");
         _root.setBottom(grassPane);
+
 
     }
 

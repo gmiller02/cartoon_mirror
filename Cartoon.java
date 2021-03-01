@@ -1,5 +1,6 @@
 package cartoon;
 
+import javafx.animation.Animation;
 import javafx.application.Platform;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -10,17 +11,22 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
 import javafx.event.EventHandler;
+import javafx.animation.KeyFrame;
+import javafx.util.Duration;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+
 
 public class Cartoon {
     private Circle _moon;
     private Rectangle _house;
     private Polygon _roof;
     private Circle _newMoon;
-    private Polygon _star1;
-    private Polygon _star2;
+    private Star _star;
+
 
     // TODO: this is your top-level logic class! It should contain your event handlers, other "game" logic, and an instance of your composite shape!
-    public Cartoon(BorderPane _root) {
+    public Cartoon(BorderPane _root, Pane starPane) {
         Pane skyPane = new Pane();
         skyPane.setPrefSize(500, 400);
         skyPane.setStyle("-fx-background-color: #000000");
@@ -40,13 +46,9 @@ public class Cartoon {
                 350.0, 300.0,
                 450.0, 300.0
         });
-        _star1 = new Polygon();
-        _star2 = new Polygon();
-
-
-        _star1.setFill(Color.YELLOW);
         _roof.setFill(Color.FIREBRICK);
-        _root.getChildren().addAll(_house, _roof, _star1);
+        _star = new Star(starPane);
+        _root.getChildren().addAll(_house, _roof);
         this.setXLoc();
 
     }
@@ -55,15 +57,23 @@ public class Cartoon {
     public void setXLoc() {
         _house.setX(350);
         _house.setY(300);
-        _star1.getPoints().addAll(450.0, 100.0,
-                200.0, 100.0,
-                350.0, 100.0);
-
     }
 
-    public double getXLoc() {
-        return _house.getX();
+    public void setUpTimeline() {
+        KeyFrame kf = new KeyFrame(Duration.seconds(1), new TimeHandler());
+        Timeline timeline = new Timeline(kf);
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
     }
+
+    private class TimeHandler implements EventHandler<ActionEvent> {
+        public void handle(ActionEvent event) {
+
+
+        }
+    }
+
+
 
 
 
