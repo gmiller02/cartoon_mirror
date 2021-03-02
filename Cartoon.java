@@ -2,8 +2,10 @@ package cartoon;
 
 import javafx.animation.Animation;
 import javafx.application.Platform;
+import javafx.geometry.Pos;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -15,6 +17,9 @@ import javafx.animation.KeyFrame;
 import javafx.util.Duration;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Label;
+import javafx.scene.control.Button;
+import javafx.scene.layout.HBox;
 
 
 public class Cartoon {
@@ -23,10 +28,10 @@ public class Cartoon {
     private Polygon _roof;
     private Circle _newMoon;
     private Star _star;
-
+    private Label _label;
 
     // TODO: this is your top-level logic class! It should contain your event handlers, other "game" logic, and an instance of your composite shape!
-    public Cartoon(BorderPane _root, Pane starPane) {
+    public Cartoon(BorderPane _root, Pane starPane, VBox labelPane, HBox buttonPane) {
         Pane skyPane = new Pane();
         skyPane.setPrefSize(500, 400);
         skyPane.setStyle("-fx-background-color: #000000");
@@ -48,10 +53,22 @@ public class Cartoon {
         });
         _roof.setFill(Color.FIREBRICK);
         _star = new Star(starPane);
-        _root.getChildren().addAll(_house, _roof);
+        _root.getChildren().addAll(_house, _roof, starPane);
         this.setXLoc();
 
+        new VBox();
+        _label = new Label("Star Label");
+        labelPane.getChildren().add(_label);
+        _root.setBottom(labelPane);
+        labelPane.setAlignment(Pos.CENTER);
+
+        new HBox();
+        Button quit = new Button("Quit");
+        quit.setOnAction(new ClickHandler());
+        buttonPane.getChildren().add(quit);
+
     }
+
 
 
     public void setXLoc() {
@@ -60,7 +77,7 @@ public class Cartoon {
     }
 
     public void setUpTimeline() {
-        KeyFrame kf = new KeyFrame(Duration.seconds(1), new TimeHandler());
+        KeyFrame kf = new KeyFrame(Duration.seconds(3), new TimeHandler());
         Timeline timeline = new Timeline(kf);
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
@@ -68,12 +85,20 @@ public class Cartoon {
 
     private class TimeHandler implements EventHandler<ActionEvent> {
         public void handle(ActionEvent event) {
+            _star.setXLoc(_star.getXLoc() - 10);
 
+            if (_star.getXLoc() == 250) {
+                _label.setText("Make a wish!");
+            }
 
         }
     }
 
-
+    private class ClickHandler implements EventHandler<ActionEvent> {
+        public void handle(ActionEvent Event) {
+            Platform.exit();
+        }
+    }
 
 
 
