@@ -5,6 +5,7 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 
+
 public class Star {
     private Polygon _star1;
     private Polygon _star2;
@@ -29,10 +30,10 @@ public class Star {
                 360.0, 90.0
         });
 
-        _tail1 = new Rectangle(326.5, 40, 6, 25);
-        _tail2 = new Rectangle(365, 83, 25, 6);
-        _tail3 = new Rectangle(270, 83, 25, 6);
-        _tail4 = new Rectangle(326.5, 105, 6, 25);
+        _tail1 = new Rectangle(Constants.TAIL1_X, Constants.TAIL1_Y, Constants.V_RECTANGLE_WIDTH, Constants.V_RECTANGLE_HEIGHT);
+        _tail2 = new Rectangle(Constants.TAIL2_X, Constants.TAIL2_Y, Constants.H_RECTANGLE_WIDTH, Constants.H_RECTANGLE_HEIGHT);
+        _tail3 = new Rectangle(Constants.TAIL3_X, Constants.TAIL3_Y, Constants.H_RECTANGLE_WIDTH, Constants.H_RECTANGLE_HEIGHT);
+        _tail4 = new Rectangle(Constants.TAIL4_X, Constants.TAIL4_Y, Constants.V_RECTANGLE_WIDTH, Constants.V_RECTANGLE_HEIGHT);
 
         _star1.setFill(Color.YELLOW);
         _star2.setFill(Color.YELLOW);
@@ -47,16 +48,29 @@ public class Star {
 
 
     public void setXLoc(double x) {
-        _star1.setTranslateX(x - 10);
-        _tail1.setX(x + 10);
+        _star1.setTranslateX(x);
+        _star2.setTranslateX(x);
+        _tail1.setX(x + _tail1.getX());
+        _tail2.setX(x + _tail1.getX());
 
+    }
 
+    public void setYLoc(double y) {
+        _star1.setTranslateY(y);
+        _star2.setTranslateY(y);
+        _tail1.setY(y + _tail1.getY());
+        _tail2.setY(y + _tail1.getY());
     }
 
     public double getXLoc() {
         return _star1.getTranslateX();
     }
 
+    public double getYLoc() {return _star1.getTranslateY();}
 
 
-}
+    }
+
+
+
+

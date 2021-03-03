@@ -2,8 +2,10 @@ package cartoon;
 
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.layout.HBox;
 
 
 
@@ -16,21 +18,13 @@ public class PaneOrganizer {
         _root = new BorderPane();
         _root.setStyle("-fx-background-color: #FFFFFF;");
         Pane starPane = new Pane();
-        new Cartoon(_root, starPane);
-        this.createPanes();
+        new Cartoon(_root, starPane, new VBox(), new HBox());
     }
 
     public BorderPane getRoot() {
         return _root;
     }
 
-    public void createPanes() {
-        Pane grassPane = new Pane();
-        grassPane.setPrefSize(500, 100);
-        grassPane.setStyle("-fx-background-color: #222b13");
-        _root.setBottom(grassPane);
 
-
-    }
 
 }

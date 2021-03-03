@@ -29,22 +29,23 @@ public class Cartoon {
     private Circle _newMoon;
     private Star _star;
     private Label _label;
+    private Rectangle _grass;
 
     // TODO: this is your top-level logic class! It should contain your event handlers, other "game" logic, and an instance of your composite shape!
     public Cartoon(BorderPane _root, Pane starPane, VBox labelPane, HBox buttonPane) {
-        Pane skyPane = new Pane();
-        skyPane.setPrefSize(500, 400);
-        skyPane.setStyle("-fx-background-color: #000000");
-        _root.setTop(skyPane);
+        Pane cartoonPane = new Pane();
+        cartoonPane.setPrefSize(500, 400);
+        cartoonPane.setStyle("-fx-background-color: #000000");
+        _root.setTop(cartoonPane);
 
 
-        _moon = new Circle(100, 100, 50, Color.WHITE);
-        _newMoon = new Circle(120, 100, 50, Color.BLACK);
+        _moon = new Circle(Constants.MOON_X, Constants.MOON_Y, Constants.CIRCLE_RADIUS, Color.WHITE);
+        _newMoon = new Circle(Constants.NEWMOON_X, Constants.MOON_Y, Constants.CIRCLE_RADIUS, Color.BLACK);
         _newMoon.setVisible(true);
-        skyPane.getChildren().addAll(_moon, _newMoon);
-        skyPane.addEventHandler(KeyEvent.KEY_PRESSED, new KeyHandler());
-        skyPane.setFocusTraversable(true);
-        _house = new Rectangle(100, 100, Color.SADDLEBROWN);
+        cartoonPane.getChildren().addAll(_moon, _newMoon);
+        cartoonPane.addEventHandler(KeyEvent.KEY_PRESSED, new KeyHandler());
+        cartoonPane.setFocusTraversable(true);
+        _house = new Rectangle(Constants.HOUSE_SIDE, Constants.HOUSE_SIDE, Color.SADDLEBROWN);
         _roof = new Polygon();
         _roof.getPoints().addAll(new Double[]{
                 400.0, 250.0,
@@ -52,32 +53,38 @@ public class Cartoon {
                 450.0, 300.0
         });
         _roof.setFill(Color.FIREBRICK);
+        _grass = new Rectangle(Constants.GRASS_WIDTH,Constants.GRASS_HEIGHT);
+        _grass.setFill(Color.DARKGREEN);
         _star = new Star(starPane);
-        _root.getChildren().addAll(_house, _roof, starPane);
+        _root.getChildren().addAll(_house, _roof, starPane, _grass);
         this.setXLoc();
 
-        new VBox();
-        _label = new Label("Star Label");
+
+        _label = new Label("Get Ready...");
         labelPane.getChildren().add(_label);
-        _root.setBottom(labelPane);
+        _root.setCenter(labelPane);
         labelPane.setAlignment(Pos.CENTER);
 
-        new HBox();
         Button quit = new Button("Quit");
         quit.setOnAction(new ClickHandler());
         buttonPane.getChildren().add(quit);
+        _root.setBottom(buttonPane);
+        buttonPane.setAlignment(Pos.BOTTOM_RIGHT);
+
+        this.setUpTimeline();
 
     }
 
 
 
     public void setXLoc() {
-        _house.setX(350);
-        _house.setY(300);
+        _house.setX(Constants.HOUSE_X);
+        _house.setY(Constants.HOUSE_Y);
+        _grass.setY(Constants.GRASS_Y);
     }
 
     public void setUpTimeline() {
-        KeyFrame kf = new KeyFrame(Duration.seconds(3), new TimeHandler());
+        KeyFrame kf = new KeyFrame(Duration.seconds(2), new TimeHandler());
         Timeline timeline = new Timeline(kf);
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
@@ -85,10 +92,19 @@ public class Cartoon {
 
     private class TimeHandler implements EventHandler<ActionEvent> {
         public void handle(ActionEvent event) {
-            _star.setXLoc(_star.getXLoc() - 10);
+            _star.setXLoc(_star.getXLoc() - 100);
+            _star.setYLoc(_star.getYLoc() + 80);
 
-            if (_star.getXLoc() == 250) {
+            if (_star.getXLoc() < 0) {
                 _label.setText("Make a wish!");
+            }
+            else {
+                _label.setText("Get Ready...");
+            }
+
+            if (_star.getXLoc() < 1) {
+                _star.setXLoc(_star.getXLoc());
+                _star.setYLoc(_star.getYLoc());
             }
 
         }
