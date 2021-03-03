@@ -21,6 +21,21 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 
+/**
+ * This class creates other shapes/labels/buttons that are not my main composite shape and the Eventhandlers
+ * that are responsible for their function. The shapes that do not move include a rectangle called
+ * _grass and a house that is made of a rectangle and a polygon. The moon element of this cartoon is
+ * made of two shapes, a moon and a 'newMoon'. If you click the left arrow key, the newMoon that
+ * overlaps the moon will disappear and the seemingly crescent moon will become a full moon. If you
+ * click the right arrow key, the newMoon will re-appear and make the moon a crescent again.
+ * This class contains an instance of the Star class, which I have already made header comments for in
+ * its own class.
+ * This class also creates a label that changes relative to the position of the star, which in turn
+ * updates based on the timeline.
+ * This class creates a quit button that quits the program, and a ClickHandler method that implements
+ * EventHandler so that it is able to be clicked.
+ */
+
 
 public class Cartoon {
     private Circle _moon;
@@ -75,6 +90,9 @@ public class Cartoon {
 
     }
 
+    /**
+     * This method sets the X and Y locations of my house shapes and the Y location of my grass shape.
+     */
 
 
     public void setXLoc() {
@@ -82,6 +100,11 @@ public class Cartoon {
         _house.setY(Constants.HOUSE_Y);
         _grass.setY(Constants.GRASS_Y);
     }
+
+    /**
+     * This method sets up the timeline that I use to move my star composite shape. Every keyFrame
+     * is two seconds long and the animation repeats indefinitly.
+     */
 
     public void setUpTimeline() {
         KeyFrame kf = new KeyFrame(Duration.seconds(2), new TimeHandler());
@@ -110,11 +133,22 @@ public class Cartoon {
         }
     }
 
+    /**
+     * This class makes the program quit when the quit button is clicked by implementing Eventhandler.
+     */
+
     private class ClickHandler implements EventHandler<ActionEvent> {
         public void handle(ActionEvent Event) {
             Platform.exit();
         }
     }
+
+    /**
+     * This class implements the class Eventhandler to create a class keyHandler. The handle method in this class
+     * uses a switch statement and the boolean method 'setVisible' so that if the left or right
+     * arrow keys are clicked, the setVisible method will be set to either true or false. Clicking Q
+     * will quit the program.
+     */
 
 
 

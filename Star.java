@@ -5,6 +5,13 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 
+/**
+ * This class constructs a composite shape in the shape of a star. It uses both polygons and rectangles
+ * to achieve this. This class is contained in a separeate pane called starPane to allow for ease of
+ * movement in the cartoon. This class also contains methods that are used in EventHandlers to move
+ * the star across the screen, which are explained in more detail below.
+ */
+
 
 public class Star {
     private Polygon _star1;
@@ -45,6 +52,13 @@ public class Star {
 
         starPane.getChildren().addAll(_star1, _star2, _tail1, _tail2, _tail3, _tail4);
     }
+
+    /**
+     * This method sets the X locations of the polygons and rectangles that make up Star. The polygons
+     * are set using setTranslateX because that method specifically allows them to move across the screen.
+     *
+     * @param x
+     */
 
 
     public void setXLoc(double x) {
