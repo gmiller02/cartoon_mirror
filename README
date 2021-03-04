@@ -15,5 +15,12 @@ Design Choices:
 - I chose to create an entirely separate class for my moving composite shape because it would decrease
 the amount of code in my cartoon class. My star has a lot of components that are much easier to understand
 once it is separate from the rest of the cartoon.
+-When the left arrow is pressed, the crescent moon turns into a circle. when the right arrow is pressed,
+it turns back into a crescent.
+-Pressing q quits the program, but there is a quit button on the screen as well.
+
+Before I left for college, I drove to my friends house who has a huge backyard and we lay down on her deck
+to watch a meteor shower. It was the first time I really saw a shooting star, and it stuck with me enough
+that I wanted to re-create it.
 
 Hours: 20

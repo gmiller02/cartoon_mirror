@@ -10,7 +10,14 @@ import javafx.stage.Stage;
  * the lecture slides and JavaFX Guide for all the
  * information you'll need (and more!).
  *
- * Please put your overall comments for the project here.
+ * My cartoon preforms the following functions:
+ * Moon changes from a crescent to a full moon when left arrow key pressed.
+ * Moon changes from a full moon to a crescent when right arrow key pressed.
+ * If the 'quit' button is pressed, the program will quit.
+ * If the 'q' button is pressed, the program will quit.
+ * The star travels across the screen until it has traveled a horizontal distance of 450. Then, it is re-set to a place
+ * close to its original location.
+ * Once the timeline updates and the shape starts moving, the label changes to 'make a wish!'
  *
  */
 

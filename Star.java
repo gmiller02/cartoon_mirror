@@ -71,6 +71,11 @@ public class Star {
 
     }
 
+    /**
+     * This method does the same as the above method, but with the y placements.
+     * @param y
+     */
+
     public void setYLoc(double y) {
         _star1.setTranslateY(y);
         _star2.setTranslateY(y);
@@ -79,6 +84,12 @@ public class Star {
         _tail3.setTranslateY(y);
         _tail4.setTranslateY(y);
     }
+
+    /**
+     * The bottom two methods return the x and y positions of the _star1 shape. Since this polygon is in
+     * the center of my entire composite shape, I called the getTranslateX and Y on that paticular shape.
+     * @return
+     */
 
     public double getXLoc() {
         return _star1.getTranslateX();
