@@ -1,0 +1,19 @@
+Cartoon README
+
+Handin: This is my final Handin.
+
+Overview: My cartoon has five classes, App, Cartoon, PaneOrganizer, Constants, and Star. They interact
+in the following ways:
+-the App class creates an instance of the class PaneOrganizer.
+- PaneOrganizer creates an instance of my Cartoon class and creates/passes in the panes that are
+necessary for the cartoon to function properly
+- Cartoon creates an instance variable of my Star class.
+- Constants is a public class that every class in my cartoon package can use. It is implemented by
+my Cartoon and Star classes.
+
+Design Choices:
+- I chose to create an entirely separate class for my moving composite shape because it would decrease
+the amount of code in my cartoon class. My star has a lot of components that are much easier to understand
+once it is separate from the rest of the cartoon.
+
+Hours: 20

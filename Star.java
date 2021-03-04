@@ -54,7 +54,7 @@ public class Star {
     }
 
     /**
-     * This method sets the X locations of the polygons and rectangles that make up Star. The polygons
+     * This method sets the X locations of the polygons and rectangles that make up Star. The polygons and rectangles
      * are set using setTranslateX because that method specifically allows them to move across the screen.
      *
      * @param x
@@ -64,16 +64,20 @@ public class Star {
     public void setXLoc(double x) {
         _star1.setTranslateX(x);
         _star2.setTranslateX(x);
-        _tail1.setX(x + _tail1.getX());
-        _tail2.setX(x + _tail1.getX());
+        _tail1.setTranslateX(x);
+        _tail2.setTranslateX(x);
+        _tail3.setTranslateX(x);
+        _tail4.setTranslateX(x);
 
     }
 
     public void setYLoc(double y) {
         _star1.setTranslateY(y);
         _star2.setTranslateY(y);
-        _tail1.setY(y + _tail1.getY());
-        _tail2.setY(y + _tail1.getY());
+        _tail1.setTranslateY(y);
+        _tail2.setTranslateY(y);
+        _tail3.setTranslateY(y);
+        _tail4.setTranslateY(y);
     }
 
     public double getXLoc() {

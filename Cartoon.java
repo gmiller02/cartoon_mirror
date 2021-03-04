@@ -113,10 +113,23 @@ public class Cartoon {
         timeline.play();
     }
 
+    /**
+     * TimeHandler is responsible for the animation segment of my cartoon, in paticular the movement of the
+     * star shape and the label that responds to the movement of the star shape. The handle method uses
+     * methods from the star class (setXLoc and getXLoc) to translate the shape across the screen until it
+     * vanishes. In order to change the label based on the timeline updates, I used an if statement. If the
+     * star leaves its original position, the label will update and change. Once the star moves a total of
+     * 4 times, it is re-set to another position in the pane, and moves across the screen again. I used
+     * an if statement to acomplish this.
+     */
+
     private class TimeHandler implements EventHandler<ActionEvent> {
         public void handle(ActionEvent event) {
+            // sets X and Y locations of the star to move in a diagonal line across the screen
             _star.setXLoc(_star.getXLoc() - 100);
             _star.setYLoc(_star.getYLoc() + 80);
+
+            //changes label text once the star leaves its original position
 
             if (_star.getXLoc() < 0) {
                 _label.setText("Make a wish!");
@@ -125,10 +138,14 @@ public class Cartoon {
                 _label.setText("Get Ready...");
             }
 
-            if (_star.getXLoc() < 1) {
-                _star.setXLoc(_star.getXLoc());
-                _star.setYLoc(_star.getYLoc());
+            //If the shape is translated along the x axis 450 spaces, it will return to a set X and y location
+
+
+            if (_star.getXLoc() < -450) {
+                _star.setXLoc(-10);
+                _star.setYLoc(50);
             }
+
 
         }
     }
